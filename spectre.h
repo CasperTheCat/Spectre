@@ -31,9 +31,12 @@ public:
     void target(void *_ba, uint64_t _ar);
 
     // Attempt to pull off spectre
-    bool launch();
+    void launch();
 
     // Display Output
     void report();
+    
+    // Get Result
+    char* getResults();
 };
 
